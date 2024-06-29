@@ -1,0 +1,27 @@
+function findMinMax(array $numbers) {
+    if (empty($numbers)) {
+        throw new InvalidArgumentException("The array should not be empty.");
+    }
+
+    $min = $numbers[0];
+    $max = $numbers[0];
+
+    foreach ($numbers as $number) {
+        if ($number < $min) {
+            $min = $number;
+        }
+        if ($number > $max) {
+            $max = $number;
+        }
+    }
+
+    return ['min' => $min, 'max' => $max];
+}
+
+try {
+    $array = [3, 5, 1, 8, -2, 7, 10];
+    $result = findMinMax($array);
+ echo "Min: " . $result['min'] . ", Max: " . $result['max']; // Outputs: Min: -2, Max: 10
+} catch (InvalidArgumentException $e) {
+    echo $e->getMessage();
+}
